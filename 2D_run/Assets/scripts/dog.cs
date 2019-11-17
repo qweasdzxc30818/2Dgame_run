@@ -41,7 +41,8 @@ public class dog : MonoBehaviour
     [Header("遺失血量大小")]
     public float lose = 1;
     public Text finalDiamond, finalCherry, finaltime, finaltotal;
-    public int scorediamond, scorecherry,scoretime, scoretotal;
+    //public int scorediamond, scorecherry,scoretime, scoretotal;
+    public int[] scores = new int[4];
     public GameObject Final;
 
     #endregion
@@ -231,86 +232,44 @@ public class dog : MonoBehaviour
         if (Final.activeInHierarchy==false)
         {
             Final.SetActive(true);
-            StartCoroutine(Finalcount(textDiamond,scorediamond,100,finalDiamond));
-            StartCoroutine(Finalcount(textCherry,scorecherry, 50 ,finalCherry, textDiamond* 0.2f));
-           // StartCoroutine(FinalTime());
-           // StartCoroutine(FinalScore());
+            StartCoroutine(Finalcount(textDiamond,0,100,finalDiamond));
+            StartCoroutine(Finalcount(textCherry,1, 50 ,finalCherry, textDiamond * 0.2f));
+            int time = (int)Time.timeSinceLevelLoad;
+            StartCoroutine(Finalcount(time,2 , 200 , finaltime , textDiamond * 0.2f + textCherry * 0.2f));
+            
+            
         }
     }
     /// <summary>
     /// 結算計分
     /// </summary>
-    /// <param name="count"></param>
-    /// <param name="score"></param>
-    /// <param name="add"></param>
-    /// <param name="text"></param>
+    /// <param name="count">執行次數</param>
+    /// <param name="score">儲存分數</param>
+    /// <param name="add">要增加分數</param>
+    /// <param name="text">文字介面</param>
     /// <returns></returns>
-    private IEnumerator Finalcount(int count, int score , int add , Text text,float wait = 0)
+    private IEnumerator Finalcount(int count , int scoreindex , int add , Text text,float wait = 0,float waittime = 0.2f)
     {
         yield return new WaitForSeconds(wait);
         while (count > 0)
         {
             count--;
-            score += add;
-            text.text = score.ToString();
-            yield return new WaitForSeconds(0.3f);
+            scores[scoreindex] += add;
+            text.text = scores[scoreindex].ToString();
+            yield return new WaitForSeconds(waittime);
         }
-
-    }
-    /*
-    /// <summary>
-    /// 鑽石跳分
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator FinalDiamond()
-    {
-        
-        while (textDiamond > 0)
+        if (scoreindex != 3)
         {
-            textDiamond--;
-            scorediamond += 100;
-            finalDiamond.text = scorediamond.ToString();
-            yield return new WaitForSeconds(0.3f);
-        }
+            scores[3] += scores[scoreindex];
 
-    }
-    /// <summary>
-    /// 櫻桃跳分
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator FinalCherry()
-    {
-        
-        while (textCherry > 0)
+        }
+        if (scoreindex == 2)
         {
-            textCherry--;
-            scorecherry += 100;
-            finalCherry.text = scorecherry.ToString();
-            yield return new WaitForSeconds(0.3f);
+            int total = scores[3] / 100;
+            scores[3] = 0;
+            StartCoroutine(Finalcount(total, 3, 100, finaltotal, 0, 0.05f));
         }
-
     }
-    */
-    /*
-    /// <summary>
-    ///時間跳分 
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator FinalTime()
-    {
-        
-
-    }
-    /// <summary>
-    /// 總分
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator FinalScore()
-    {
-        
-        
-
-    }
-    */
+    
     #endregion
 }
