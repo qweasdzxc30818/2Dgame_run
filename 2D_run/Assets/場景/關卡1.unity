@@ -7332,6 +7332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5780987618c03dc44a1bb7e328f23fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lodingtext: {fileID: 0}
+  LodingImage: {fileID: 0}
+  lod: {fileID: 0}
 --- !u!4 &1549072176
 Transform:
   m_ObjectHideFlags: 0
@@ -7724,8 +7727,8 @@ MonoBehaviour:
   hp: {fileID: 288202827}
   dam: 10
   tileprop: {fileID: 1189221849}
-  textCherry: 7
-  textDiamond: 5
+  textCherry: 0
+  textDiamond: 0
   Diamond: {fileID: 524110259}
   Cherry: {fileID: 152263502}
   lose: 7.99
@@ -8240,8 +8243,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23.95001, y: -175}
-  m_SizeDelta: {x: 190.9, y: 109.1}
+  m_AnchoredPosition: {x: 80.1, y: -175}
+  m_SizeDelta: {x: 399, y: 109.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025320951
 MonoBehaviour:

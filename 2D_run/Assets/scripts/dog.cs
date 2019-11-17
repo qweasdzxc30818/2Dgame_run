@@ -95,7 +95,7 @@ public class dog : MonoBehaviour
             Damage();
             hp.fillAmount = health / maxHp;
             sr.enabled = false;
-            Invoke("Show", .3f);
+            Invoke("Show", .5f);
             Dead();
         }
         if(collision.tag == "鑽石")
@@ -267,7 +267,7 @@ public class dog : MonoBehaviour
         {
             int total = scores[3] / 100;
             scores[3] = 0;
-            StartCoroutine(Finalcount(total, 3, 100, finaltotal, 0, 0.05f));
+            StartCoroutine(Finalcount(total, 3 , 100, finaltotal, 0, 0.05f));
         }
     }
     
